@@ -24,6 +24,8 @@
    NULL if the rich comparison returns an error.
 */
 
+#include <stdio.h>
+
 #include "Python.h"
 #include "structmember.h"
 
@@ -1262,6 +1264,8 @@ set_intersection(PySetObject *so, PyObject *other)
     Py_hash_t hash;
     int rv;
 
+    printf("set_intersection\n");
+
     if ((PyObject *)so == other)
         return set_copy(so);
 
@@ -1335,6 +1339,8 @@ set_intersection_multi(PySetObject *so, PyObject *args)
     Py_ssize_t i;
     PyObject *result = (PyObject *)so;
 
+    printf("set_intersection_multi\n");
+
     if (PyTuple_GET_SIZE(args) == 0)
         return set_copy(so);
 
@@ -1362,6 +1368,8 @@ set_intersection_update(PySetObject *so, PyObject *other)
 {
     PyObject *tmp;
 
+    printf("set_intersection_update\n");
+
     tmp = set_intersection(so, other);
     if (tmp == NULL)
         return NULL;
@@ -1374,6 +1382,8 @@ static PyObject *
 set_intersection_update_multi(PySetObject *so, PyObject *args)
 {
     PyObject *tmp;
+
+    printf("set_intersection_update_multi\n");
 
     tmp = set_intersection_multi(so, args);
     if (tmp == NULL)
@@ -1389,6 +1399,8 @@ PyDoc_STRVAR(intersection_update_doc,
 static PyObject *
 set_and(PySetObject *so, PyObject *other)
 {
+    printf("set_and\n");
+
     if (!PyAnySet_Check(so) || !PyAnySet_Check(other))
         Py_RETURN_NOTIMPLEMENTED;
     return set_intersection(so, other);
@@ -1398,6 +1410,8 @@ static PyObject *
 set_iand(PySetObject *so, PyObject *other)
 {
     PyObject *result;
+
+    printf("set_iand\n");
 
     if (!PyAnySet_Check(other))
         Py_RETURN_NOTIMPLEMENTED;
