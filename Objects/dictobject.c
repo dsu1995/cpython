@@ -66,7 +66,6 @@ to the combined-table form.
  */
 #define PyDict_MINSIZE_COMBINED 8
 
-
 #include "Python.h"
 #include "dict-common.h"
 #include "stringlib/eq.h"
